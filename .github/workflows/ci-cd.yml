@@ -1,0 +1,20 @@
+name: DevOps Pipeline CI
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Étape A : Récupérer automatiquement ton code HTML et ton Dockerfile
+    - name: Checkout du code source
+      uses: actions/checkout@v4
+
+    # Étape B : Lancer la création (Build) de l'image Docker pour vérifier qu'il n'y a pas d'erreur
+    - name: Build de l'image Docker
+      run: |
+        docker build -t mon-application-html:latest .
+        echo "L'image Docker a été buildée avec succès sans aucune erreur !"
